@@ -678,7 +678,7 @@ pub struct TpmsCertifyInfo {
 }
 
 #[repr(C)]
-#[derive(Clone, Copy, PartialEq, Marshalable)]
+#[derive(Clone, Copy, PartialEq, Debug, Marshalable)]
 pub struct TpmsCommandAuditInfo {
     pub audit_counter: u64,
     pub digest_alg: u16,
@@ -716,7 +716,7 @@ pub struct TpmsNvCertifyInfo {
 }
 
 #[repr(C, u16)]
-#[derive(Clone, Copy, PartialEq, Discriminant, Marshalable)]
+#[derive(Clone, Copy, PartialEq, Debug, Discriminant, Marshalable)]
 pub enum TpmuAttest {
     Certify(TpmsCertifyInfo) = TpmSt::AttestCertify.0,
     Creation(TpmsCreationInfo) = TpmSt::AttestCreation.0,
@@ -728,7 +728,7 @@ pub enum TpmuAttest {
 }
 
 #[repr(C)]
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Debug)]
 pub struct TpmsAttest {
     pub magic: TpmGenerated,
     pub qualified_signer: Tpm2bName,
